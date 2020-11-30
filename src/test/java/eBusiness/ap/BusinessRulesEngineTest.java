@@ -3,6 +3,9 @@ package eBusiness.ap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+
 public class BusinessRulesEngineTest {
 
     @Test
@@ -17,5 +20,14 @@ public class BusinessRulesEngineTest {
         businessRulesEngine.addAction(() -> {});
         businessRulesEngine.addAction(() -> {});
         Assertions.assertEquals(2, businessRulesEngine.count());
+    }
+
+    @Test
+    void shouldExecuteOneAction() {
+        final BusinessRulesEngine businessRulesEngine = new BusinessRulesEngine();
+        final Action mockAction = mock(Action.class);
+        businessRulesEngine.addAction(mockAction);
+        businessRulesEngine.run();
+        verify(mockAction).execute();
     }
 }
