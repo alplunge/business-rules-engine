@@ -23,27 +23,9 @@ public class BusinessRulesEngineTest {
     @Test
     void shouldAddTwoActions() {
         final BusinessRulesEngine businessRulesEngine = new BusinessRulesEngine(mockFacts);
-        final Action mockAction = mock(Action.class);
-        businessRulesEngine.addAction(mockAction);
-        businessRulesEngine.addAction(mockAction);
+        final Rule mockRule = mock(Rule.class);
+        businessRulesEngine.addRule(mockRule);
+        businessRulesEngine.addRule(mockRule);
         Assertions.assertEquals(2, businessRulesEngine.count());
-    }
-
-    @Test
-    void shouldExecuteOneAction() {
-        final BusinessRulesEngine businessRulesEngine = new BusinessRulesEngine(mockFacts);
-        final Action mockAction = mock(Action.class);
-        businessRulesEngine.addAction(mockAction);
-        businessRulesEngine.run();
-        verify(mockAction).execute(mockFacts);
-    }
-
-    @Test
-    void shouldPerformAnActionWithFacts() {
-        final Action mockAction = mock(Action.class);
-        final BusinessRulesEngine businessRulesEngine = new BusinessRulesEngine(mockFacts);
-        businessRulesEngine.addAction(mockAction);
-        businessRulesEngine.run();
-        verify(mockAction).execute(mockFacts);
     }
 }
